@@ -2,115 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Sri Chaitanya Schools - Premium Educational Design System */
+/* Sri Chaitanya – Premium Institutional Design System */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Primary - Deep Navy Blue (Trust, Excellence) */
-    --background: 210 33% 98%;
-    --foreground: 222 47% 11%;
+    /* Base (Updated for more professional, muted tones) */
+    --background: 210 20% 98%; /* Softer light gray-blue for clean, modern bg */
+    --foreground: 222 50% 10%; /* Deeper navy for text readability */
 
-    /* Card surfaces */
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 222 50% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 222 50% 10%;
 
-    /* Brand Colors */
-    --primary: 222 47% 15%;
-    --primary-foreground: 44 100% 97%;
+    /* 🔵 Navy – Trust & Education (Refined from logo's navy) */
+    --primary: 222 50% 10%; /* hsl(222, 50%, 10%) - Deeper, more premium navy */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 91% 60%;
+    /* 🔴 Brand Red – Logo Based (#CC1A1E, kept but slightly muted for modernity) */
+    --accent: 358 70% 50%; /* hsl(358, 70%, 50%) - Softer red for premium feel */
+    --accent-foreground: 0 0% 100%;
+
+    /* Secondary Teal – Modern Innovation (New for premium school vibe) */
+    --secondary: 180 60% 45%; /* hsl(180, 60%, 45%) - Teal for fresh, educational accents */
     --secondary-foreground: 0 0% 100%;
 
-    /* Gold Accent */
-    --accent: 38 92% 50%;
-    --accent-foreground: 222 47% 11%;
+    /* Muted UI (Updated to softer gray for professionalism) */
+    --muted: 210 30% 95%; /* Lighter, airier mute */
+    --muted-foreground: 215 15% 50%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    /* Alerts (Added success green for achievements) */
+    --destructive: 0 80% 60%; /* Red error */
+    --destructive-foreground: 0 0% 100%;
+    --success: 140 60% 45%; /* hsl(140, 60%, 45%) - Green for positive school elements */
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    /* Borders & Focus (Softer for modern UI) */
+    --border: 214 25% 90%;
+    --input: 214 25% 90%;
+    --ring: 358 70% 50%; /* Matches updated accent */
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --radius: 1rem; /* Slightly increased for modern, rounded premium look */
 
-    --radius: 0.75rem;
+    /* Custom Tokens (New additions for premium) */
+    --navy: 222 50% 10%; /* Core navy */
+    --navy-soft: 222 40% 20%; /* Muted navy for hovers */
+    --brand: 358 70% 50%; /* Updated red */
+    --brand-light: 358 70% 65%; /* Lighter red variant */
+    --gold: 40 80% 50%; /* hsl(40, 80%, 50%) - Premium gold for highlights/achievements */
+    --neutral: 210 15% 95%; /* Soft neutral gray for backgrounds */
 
-    /* Custom colors */
-    --navy: 222 47% 11%;
-    --navy-light: 217 33% 17%;
-    --royal-blue: 217 91% 60%;
-    --gold: 38 92% 50%;
-    --gold-light: 44 100% 77%;
-    --success: 142 71% 45%;
+    /* Gradients (Updated for smoother, premium transitions) */
+    --gradient-hero: linear-gradient(135deg, hsl(222 50% 10%) 0%, hsl(222 40% 20%) 100%);
+    --gradient-brand: linear-gradient(135deg, hsl(358 70% 50%) 0%, hsl(358 70% 65%) 100%);
+    --gradient-overlay: linear-gradient(180deg, hsla(222, 50%, 10%, 0.7) 0%, hsla(222, 50%, 10%, 0.3) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(40 80% 50%) 0%, hsl(40 80% 65%) 100%);
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(217 33% 25%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(44 100% 60%) 100%);
-    --gradient-blue: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(222 47% 40%) 100%);
-    --gradient-overlay: linear-gradient(180deg, hsla(222, 47%, 11%, 0.7) 0%, hsla(222, 47%, 11%, 0.4) 100%);
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsla(222, 47%, 11%, 0.05);
-    --shadow: 0 4px 6px -1px hsla(222, 47%, 11%, 0.1), 0 2px 4px -2px hsla(222, 47%, 11%, 0.1);
-    --shadow-md: 0 10px 15px -3px hsla(222, 47%, 11%, 0.1), 0 4px 6px -4px hsla(222, 47%, 11%, 0.1);
-    --shadow-lg: 0 20px 25px -5px hsla(222, 47%, 11%, 0.1), 0 8px 10px -6px hsla(222, 47%, 11%, 0.1);
-    --shadow-xl: 0 25px 50px -12px hsla(222, 47%, 11%, 0.25);
-    --shadow-gold: 0 10px 40px -10px hsla(38, 92%, 50%, 0.4);
-    --shadow-blue: 0 10px 40px -10px hsla(217, 91%, 60%, 0.4);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Shadows (Softer, layered for modern depth) */
+    --shadow-sm: 0 2px 4px hsla(222, 50%, 10%, 0.05);
+    --shadow-md: 0 4px 12px hsla(222, 50%, 10%, 0.1);
+    --shadow-lg: 0 10px 30px hsla(222, 50%, 10%, 0.15);
+    --shadow-brand: 0 8px 30px hsla(358, 70%, 50%, 0.3);
+    --shadow-gold: 0 8px 30px hsla(40, 80%, 50%, 0.3);
   }
 
+  /* 🌙 Dark Mode (Refined for premium night mode – softer contrasts) */
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 222 50% 5%; /* Deeper navy bg */
+    --foreground: 210 30% 98%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 50% 7%;
+    --card-foreground: 210 30% 98%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --primary: 210 30% 98%;
+    --primary-foreground: 222 50% 10%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222 47% 11%;
+    --accent: 358 70% 60%; /* Brighter red in dark for visibility */
+    --accent-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 38 92% 50%;
-    --accent-foreground: 222 47% 11%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 222 40% 15%;
+    --input: 222 40% 15%;
+    --ring: 358 70% 60%;
   }
 }
 
@@ -118,16 +91,13 @@
   * {
     @apply border-border;
   }
-
   html {
     scroll-behavior: smooth;
   }
-
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     @apply font-semibold tracking-tight;
@@ -135,107 +105,111 @@
 }
 
 @layer components {
-  /* Glass morphism effect */
+  /* Glass effect (Updated for more premium blur) */
   .glass {
-    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+    @apply bg-white/90 backdrop-blur-md border border-white/10;
   }
 
-  .glass-dark {
-    @apply bg-navy/80 backdrop-blur-lg border border-white/10;
-  }
-
-  /* Premium card hover effect */
+  /* Premium Card (Enhanced hover with gold shadow option) */
   .card-premium {
     @apply relative overflow-hidden rounded-2xl bg-card shadow-md transition-all duration-500;
   }
-
   .card-premium:hover {
-    @apply shadow-xl -translate-y-1;
+    @apply shadow-lg -translate-y-1;
   }
-
   .card-premium::before {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-500;
-    background: linear-gradient(135deg, hsla(38, 92%, 50%, 0.1) 0%, transparent 100%);
+    background: linear-gradient(135deg, hsla(358, 70%, 50%, 0.1) 0%, transparent 100%);
   }
-
   .card-premium:hover::before {
     @apply opacity-100;
   }
+  .card-premium-gold {
+    @apply card-premium;
+  }
+  .card-premium-gold:hover {
+    box-shadow: var(--shadow-gold);
+  }
 
-  /* Text gradient */
+  /* Text Gradients (Added gold variant) */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(38, 92%, 50%) 100%);
+    background-image: linear-gradient(135deg, hsl(180 60% 45%) 0%, hsl(358 70% 50%) 100%);
   }
-
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-brand);
+  }
   .text-gradient-gold {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(44, 100%, 60%) 100%);
+    background-image: var(--gradient-gold);
   }
 
-  /* Section styling */
-  .section-padding {
-    @apply py-16 md:py-24 px-4 md:px-8;
-  }
-
-  /* Button styles */
+  /* Buttons (Added premium variants) */
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground px-8 py-3 font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground px-8 py-3 font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg;
   }
-
-  .btn-accent {
-    @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-medium transition-all duration-300 hover:shadow-gold hover:-translate-y-0.5;
-    background: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(44, 100%, 55%) 100%);
-    color: hsl(222, 47%, 11%);
+  .btn-brand {
+    @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-0.5;
+    background: var(--gradient-brand);
+    box-shadow: var(--shadow-brand);
   }
-
+  .btn-gold {
+    @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-medium text-navy transition-all duration-300 hover:-translate-y-0.5;
+    background: var(--gradient-gold);
+    box-shadow: var(--shadow-gold);
+  }
   .btn-outline {
-    @apply inline-flex items-center justify-center rounded-full border-2 border-white text-white px-8 py-3 font-medium transition-all duration-300 hover:bg-white hover:text-primary;
+    @apply inline-flex items-center justify-center rounded-full border-2 border-primary text-primary px-8 py-3 font-medium transition-all duration-300 hover:bg-primary hover:text-white;
   }
 
-  /* Nav link animation */
+  /* Navigation underline (Updated with gradient) */
   .nav-link {
     @apply relative;
   }
-
   .nav-link::after {
     content: '';
     @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
-    background: linear-gradient(90deg, hsl(38, 92%, 50%) 0%, hsl(217, 91%, 60%) 100%);
+    background: var(--gradient-brand);
   }
-
   .nav-link:hover::after {
     @apply w-full;
   }
 
-  /* Animated underline */
-  .underline-gradient {
-    @apply relative inline-block;
+  /* Section padding */
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
   }
 
-  .underline-gradient::after {
-    content: '';
-    @apply absolute -bottom-1 left-0 w-16 h-1 rounded-full;
-    background: linear-gradient(90deg, hsl(38, 92%, 50%) 0%, hsl(217, 91%, 60%) 100%);
-  }
-
-  /* Stats counter styling */
+  /* Stats (Updated with gold gradient option) */
   .stat-number {
     @apply text-5xl md:text-6xl font-bold;
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, hsl(38, 92%, 50%) 0%, hsl(44, 100%, 60%) 100%);
+    background: var(--gradient-brand);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .stat-number-gold {
+    @apply stat-number;
+    background: var(--gradient-gold);
+  }
 }
 
 @layer utilities {
-  /* Animation delays */
   .animation-delay-100 { animation-delay: 100ms; }
   .animation-delay-200 { animation-delay: 200ms; }
   .animation-delay-300 { animation-delay: 300ms; }
   .animation-delay-400 { animation-delay: 400ms; }
   .animation-delay-500 { animation-delay: 500ms; }
+
+  /* New: Fade-in utility for modern entrances */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
