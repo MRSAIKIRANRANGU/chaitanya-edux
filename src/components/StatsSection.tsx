@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { TrendingUp, Trophy, Users, MapPin, GraduationCap, Star } from "lucide-react";
+import { TrendingUp, Trophy, Users, MapPin, GraduationCap, Star, Award, Zap } from "lucide-react";
 
 const stats = [
   {
@@ -10,6 +10,7 @@ const stats = [
     suffix: "+",
     label: "IIT JEE Top Rankers",
     description: "In 2024 Results",
+    color: "from-amber-400 to-orange-500",
   },
   {
     icon: GraduationCap,
@@ -17,6 +18,7 @@ const stats = [
     suffix: "%",
     label: "Board Pass Rate",
     description: "Consistently High",
+    color: "from-emerald-400 to-green-500",
   },
   {
     icon: Users,
@@ -24,6 +26,7 @@ const stats = [
     suffix: "+",
     label: "Students Enrolled",
     description: "Across India",
+    color: "from-blue-400 to-indigo-500",
   },
   {
     icon: MapPin,
@@ -31,6 +34,7 @@ const stats = [
     suffix: "+",
     label: "School Branches",
     description: "Pan-India Presence",
+    color: "from-purple-400 to-pink-500",
   },
   {
     icon: Star,
@@ -38,6 +42,7 @@ const stats = [
     suffix: "+",
     label: "Years of Excellence",
     description: "Since 1986",
+    color: "from-gold to-amber-400",
   },
   {
     icon: TrendingUp,
@@ -45,6 +50,7 @@ const stats = [
     suffix: "+",
     label: "Medical Selections",
     description: "NEET Success",
+    color: "from-red-400 to-rose-500",
   },
 ];
 
@@ -54,8 +60,8 @@ const AnimatedCounter = ({ value, suffix, inView }: { value: number; suffix: str
   useEffect(() => {
     if (!inView) return;
 
-    const duration = 2000;
-    const steps = 60;
+    const duration = 2500;
+    const steps = 80;
     const stepValue = value / steps;
     let current = 0;
 
@@ -73,6 +79,9 @@ const AnimatedCounter = ({ value, suffix, inView }: { value: number; suffix: str
   }, [value, inView]);
 
   const formatNumber = (num: number) => {
+    if (num >= 100000) {
+      return (num / 100000).toFixed(1) + "L";
+    }
     if (num >= 1000) {
       return (num / 1000).toFixed(num >= 10000 ? 0 : 1) + "K";
     }
@@ -80,7 +89,7 @@ const AnimatedCounter = ({ value, suffix, inView }: { value: number; suffix: str
   };
 
   return (
-    <span className="stat-number">
+    <span className="stat-number text-4xl md:text-5xl">
       {value >= 1000 ? formatNumber(count) : count}
       {suffix}
     </span>
@@ -92,18 +101,34 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 relative overflow-hidden" ref={ref}>
-      {/* Background */}
+    <section className="py-20 md:py-28 relative overflow-hidden" ref={ref}>
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-primary">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-gold rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-royal rounded-full blur-3xl" />
-        </div>
-        {/* Pattern overlay */}
+        {/* Gradient Orbs */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-0 left-0 w-[600px] h-[600px] bg-gold rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+          className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary rounded-full blur-3xl"
+        />
+
+        {/* Grid Pattern */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
           }}
         />
       </div>
@@ -116,6 +141,14 @@ const StatsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/20 mb-6"
+          >
+            <Award className="w-8 h-8 text-gold" />
+          </motion.div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Our <span className="text-gradient-gold">Achievements</span>
           </h2>
@@ -129,30 +162,45 @@ const StatsSection = () => {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 * index }}
-              className="text-center group"
+              className="group"
             >
-              <div className="relative">
+              <motion.div
+                whileHover={{ y: -10 }}
+                className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-gold/30 transition-all duration-500 overflow-hidden"
+              >
+                {/* Glow Effect */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+
                 {/* Icon */}
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-300">
-                  <stat.icon className="w-8 h-8 text-gold" />
-                </div>
+                <motion.div
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center"
+                >
+                  <stat.icon className="w-7 h-7 text-gold" />
+                </motion.div>
 
                 {/* Counter */}
-                <div className="mb-2">
+                <div className="text-center mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={isInView} />
                 </div>
 
                 {/* Label */}
-                <h3 className="text-white font-semibold text-sm md:text-base mb-1">
+                <h3 className="text-white font-semibold text-sm md:text-base mb-1 text-center">
                   {stat.label}
                 </h3>
-                <p className="text-white/50 text-xs md:text-sm">
+                <p className="text-white/50 text-xs text-center">
                   {stat.description}
                 </p>
-              </div>
+
+                {/* Decorative */}
+                <motion.div
+                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-gold to-secondary rounded-full group-hover:w-3/4 transition-all duration-500"
+                />
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -162,22 +210,45 @@ const StatsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 bg-gradient-accent rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="mt-16"
         >
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">
-              🏆 2024 Board Results
-            </h3>
-            <p className="text-primary/80">
-              Congratulations to all our toppers! View detailed results and success stories.
-            </p>
+          <div className="relative bg-gradient-to-r from-gold via-amber-400 to-gold rounded-2xl p-8 md:p-10 overflow-hidden">
+            {/* Shimmer Effect */}
+            <motion.div
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+              className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+            />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-4xl"
+                >
+                  🏆
+                </motion.div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-primary mb-1">
+                    2024 Board Results Out!
+                  </h3>
+                  <p className="text-primary/80">
+                    Congratulations to all our toppers! View detailed results and success stories.
+                  </p>
+                </div>
+              </div>
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#"
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-semibold hover:shadow-xl transition-shadow whitespace-nowrap gap-2"
+              >
+                <Zap className="w-5 h-5" />
+                View Results
+              </motion.a>
+            </div>
           </div>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap"
-          >
-            View Results
-          </a>
         </motion.div>
       </div>
     </section>
